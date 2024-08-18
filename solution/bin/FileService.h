@@ -1,5 +1,6 @@
 #ifndef FILESERVICE_H
 #define FILESERVICE_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -22,20 +23,17 @@ bool compareTermo( Termo &a,  Termo &b)
 class FileService {
     public:
         static ListaOrdenada<Termo> readFile(const string& nomeArquivo) {
-            cout<<"Status:Procurando arquivo"<<endl;
             ListaOrdenada<Termo> outputList;
             fstream arquivo;
             arquivo.open(nomeArquivo, ios::in);
             int totalLines = countLines(nomeArquivo);
             if(arquivo.is_open()){
                 cout.flush();
-                cout <<"Status:"<<GREEN<< "Arquivo aberto com sucesso" <<RESET<< endl;
                 string linha;
                 int qtd=0;
                 cout <<GREEN<< "Lendo arquivo" <<RESET<< endl;
                 while (getline(arquivo, linha)) {
                     showLoadingBar((qtd*100)/totalLines);
-
                     //SEPARATING THE WEIGHT FROM THE WORD
                     size_t tabPos = linha.find_first_of("\t");
                     string palavra = linha.substr(tabPos + 1);
@@ -51,7 +49,7 @@ class FileService {
                 cout<<endl;
                 cout<<GREEN<<"Arquivo lido com sucesso"<<RESET<<endl;
                 cout<<"--------------------------------------"<<endl;
-                cout<<"Tamanho da lista:"<<outputList.getSize()<<endl;
+
                 outputList.sort(compareTermo);
                 return outputList;
             }
@@ -85,7 +83,7 @@ class FileService {
             }
             return lines;
         }
-   
+
 
 };
 #endif
