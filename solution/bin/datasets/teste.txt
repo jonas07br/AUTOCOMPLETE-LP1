@@ -1,0 +1,54 @@
+  4551	Pinnacle West Capital
+  7018	Automatic Data Proc.
+  8969	Continental Airlines
+  5725	PPL
+  1193	Goody's Family Clothing
+  1694	Community Health Sys.
+  7875	Cenex Harvest States
+  5723	Air Products & Chem.
+  2238	Consol. Freightways
+ 31138	Goldman Sachs Group
+  2352	PNM Resources
+ 16895	Federated Dept. Stores
+  1537	Equifax
+  1877	Marsh Supermarkets
+  8108	Conseco
+  2501	PETsMART
+  1855	Silicon Graphics
+  1252	Texas Industries
+  1577	Maxim Integrated Products
+ 10379	Allegheny Energy
+  1205	Forest Laboratories
+  4323	Rockwell Automation
+ 25309	Georgia-Pacific
+  7663	Baxter International
+  1273	Men's Wearhouse
+  6170	Norfolk Southern
+  8358	Masco
+ 35041	Marathon Oil
+  1258	Domino's
+  2366	Molex
+  2914	Payless Shoesource
+  2007	Bell Microproducts
+ 25269	Walt Disney
+  2887	United Rentals
+ 36910	Kmart
+  3871	FMC
+  1464	AIMCO
+  1785	LSI Logic
+ 10128	Arrow Electronics
+  3363	Harley-Davidson
+  3754	Host Marriott
+ 17692	Washington Mutual
+  3628	Quest Diagnostics
+ 10524	Computer Sciences
+  2001	Volt Info. Sciences
+  2100	J.B. Hunt Transport Svcs.
+ 11154	Office Depot
+ 37931	Albertson's
+  6711	Centex
+  2159	Omnicare
+  1267	Amica Mutual Insurance
+  3755	NTL
+ 16212	Northwestern Mutual
+  3520	Spartan Stores
