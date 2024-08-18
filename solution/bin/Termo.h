@@ -76,7 +76,7 @@ int Termo::compareByWeight(Termo t1, Termo t2)
 }
 int Termo::compareByPrefix(Termo t1, Termo t2, int prefixSize)
 {
-    for(int x=0;x<=prefixSize;x++){
+    for(int x=0;x<prefixSize;x++){
         if(t1.getWord()[x] < t2.getWord()[x]){
             return -1;
         }
