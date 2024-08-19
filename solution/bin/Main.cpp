@@ -18,7 +18,18 @@ int main(){
     int size;
     cin>>entrada>>size;
     Autocomplete autocompleter(entrada,size);
-      
+    
+    string target;
+    while(true){
+        cin>>target;
+        if(target=="sair"){
+            break;
+        }
+        int start = autocompleter.BinarySearchTest(target);
+        autocompleter.getListTest(start,target);
+        
+    }
+    cout<<"----------------FIM-------------------"<<endl;
     
     
 
