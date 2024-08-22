@@ -1,17 +1,16 @@
-build: bin/main.o bin/autocompletar.o bin/termo.o include/listaordenada.h
-	g++ -o bin/main src/termo.cpp src/autocompletar.cpp src/main.cpp -I./include
+# Implementação do AUTOCOMPLETE
+# Autor: JONAS RAFAEL
 
-all: bin/main.o bin/autocompletar.o bin/termo.o include/listaordenada.h
-	g++ -o main listaordenada.o termo.o autocompletar.o main.o -I./include
+PROG = exec
+CC = g++
+FLAGS = -O3 -g -Wall -pedantic
+OBJS = main.o
 
-bin/main.o: bin/autocompletar.o bin/termo.o include/listaordenada.h
-	g++ -o bin/main.o -c src/main.cpp -I./include
+$(PROG): $(OBJS)
+	$(CC) $(FLAGS) -o $(PROG) $(OBJS)
 
-bin/autocompletar.o: bin/termo.o src/autocompletar.cpp include/autocompletar.h include/listaordenada.h
-	g++ -o bin/autocompletar.o -c src/autocompletar.cpp -I./include
+main.o: main.cpp Termo.h Lista.h ListaOrdenada.h FileService.h Autocomplete.h
+	$(CC) $(FLAGS) -c main.cpp
 
-bin/termo.o: src/termo.cpp include/termo.h
-	g++ -o bin/termo.o -c src/termo.cpp -I./include
-
-clean: 
-	rm -f *.o *.out bin/*
+clean:
+	rm -f $(PROG) $(OBJS)

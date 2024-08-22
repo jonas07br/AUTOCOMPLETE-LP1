@@ -27,7 +27,7 @@ int main(){
             cout<<"Entre com o termo a ser auto-completado: (digite 'sair' para encerrar o programa):"<<endl;
             cin>>target;
             
-            if(target=="sair"){
+            if(target=="sair"){ 
                 break;
             }
             
