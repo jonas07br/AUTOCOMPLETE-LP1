@@ -1,6 +1,7 @@
 #ifndef LISTA_H
 #define LISTA_H
 #include <iostream>
+#include "Termo.h"
 using namespace std;
 
 template <typename T>
@@ -11,7 +12,7 @@ private:
     int capacity;
 
     void resize() {
-        capacity += 150;
+        capacity += 200;
         T* newList = new T[capacity];
         for (int i = 0; i < size; ++i) {
             newList[i] = lista[i];
@@ -21,8 +22,10 @@ private:
     }
 
 public:
-    Lista() : size(0), capacity(100) {
-        lista = new T[capacity];
+    Lista(){
+        this->size=0;
+        this->capacity=0;
+        this->lista = new T[capacity];
     }
 
     ~Lista() {
@@ -30,7 +33,7 @@ public:
     }
 
     void insert(const T& item) {
-        if (size == capacity) {
+        if (this->size == this->capacity) {
             resize();
         }
         lista[size++] = item;
@@ -41,22 +44,21 @@ public:
     }
 
     void print() const {
-        for (int i = 0; i < size; ++i) {
-            cout << lista[i] << " ";
+        for (int i = 0; i < this->size; ++i) {
+            cout << lista[i] << endl;;
         }
-        cout << endl;
     }
 
     T& operator[](int indice) {
         if (indice < 0 || indice >= size) {
-            throw out_of_range("Indice nao encontrado");
+            throw ("Indice nao encontrado");
         }
         return lista[indice];
     }
-
+    //for const functions
     const T& operator[](int indice) const {
         if (indice < 0 || indice >= size) {
-            throw out_of_range("Indice nao encontrado");
+            throw ("Indice nao encontrado");
         }
         return lista[indice];
     }

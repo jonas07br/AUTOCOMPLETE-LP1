@@ -1,6 +1,8 @@
 #ifndef TERMO_H
 #define TERMO_H
 #include <iostream>
+#include <string>
+#include <string.h>
 using namespace std;
 
 class Termo{
@@ -10,13 +12,14 @@ class Termo{
     public:
         Termo();
         Termo(string word, long weight);
-        string getWord();
-        long getWeight();
+        const string& getWord() const;
+        const long& getWeight()const;
         void setword(string word);
         void setweight(long weight);
-        bool operator<(Termo T2);
-        static int compareByWeight(Termo t1,Termo t2);
-        static int compareByPrefix(Termo t1,Termo t2,int prefixSize);
+        bool operator<(const Termo& T2)const;
+        friend ostream& operator<<(ostream& os, const Termo& termo);
+        static int compareByWeight(const Termo& t1,const Termo& t2);
+        static int compareByPrefix(const Termo& t1,const Termo& t2,int prefixSize);
 };
 Termo::Termo(){
     word = "";
@@ -26,12 +29,14 @@ Termo::Termo(string word, long weight){
     this->word = word;
     this->weight = weight;
 }
-string Termo::getWord(){
-    return word;
+
+const string &Termo::getWord() const{
+    return this->word;
 }
-long Termo::getWeight(){
-    return weight;
+const long &Termo::getWeight() const{
+    return this->weight;
 }
+
 void Termo::setword(string word){
     this->word = word;
 }
@@ -39,8 +44,7 @@ void Termo::setweight(long weight){
     this->weight = weight;
 }
 
-bool Termo::operator<(Termo t2)
-{
+bool Termo::operator<(const Termo& t2)const{
     string p1 = this->getWord();
     string p2 = t2.getWord();
     
@@ -58,24 +62,45 @@ bool Termo::operator<(Termo t2)
     }
     return false;
     
-    
-    
 }
-int Termo::compareByWeight(Termo t1, Termo t2)
-{
-    if(t1.getWeight() < t2.getWeight()){
+
+ostream& operator<<(ostream& os, const Termo& termo){
+    os << termo.getWeight() << " - " << termo.getWord();
+    return os;
+}
+
+int Termo::compareByPrefix(const Termo &t1, const Termo &t2, int prefixSize){
+    string word1="";
+    string word2="";
+    for(int x=0;x<prefixSize;x++){
+            string word1 = t1.getWord();
+            string word2 = t2.getWord();
+            if(word1[x] < word2[x]){
+                return -1;
+            }
+            else if(word1[x]> word2[x]){
+                return 1;
+            } 
+    }
+    return 0;
+}
+
+int Termo::compareByWeight(const Termo &t1, const Termo &t2){
+    long p1=t1.getWeight();
+    long p2=t2.getWeight();
+
+    if(p1 < p2){
         return -1;
     }
-    else if(t1.getWeight() > t2.getWeight()){
+    else if(p1 > p2){
         return 1;
     }
     else{
         return 0;
     }
-    return 0;
+    
 }
-int Termo::compareByPrefix(Termo t1, Termo t2, int prefixSize)
-{
+/*int Termo::compareByPrefix(const Termo& t1,const Termo& t2, int prefixSize)const{
     for(int x=0;x<prefixSize;x++){
         if(t1.getWord()[x] < t2.getWord()[x]){
             return -1;
@@ -86,5 +111,5 @@ int Termo::compareByPrefix(Termo t1, Termo t2, int prefixSize)
     }
     return 0;
     
-}
+}*/
 #endif

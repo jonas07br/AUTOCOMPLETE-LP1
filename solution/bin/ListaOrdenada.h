@@ -19,23 +19,26 @@ using namespace std;
 template <typename T>
 class ListaOrdenada: public Lista<T>{
     public:
-            bool sort(function<bool( T &,  T &)> func_compara);
+            bool sort(function<bool(const T &,const  T &)> func_compara);
             bool sortByWeight();
             bool sortByWord();
+            void getList(int start,int size,string word);
 
     
     private:
 };
 
 template <typename T>
-bool ListaOrdenada<T>::sort(function<bool( T &, T &)> func_compara)
-{
+bool ListaOrdenada<T>::sort(function<bool(const T &,const T &)> func_compara){
     for(int i=0; i<this->getSize(); i++){
         for(int j=i+1; j<this->getSize(); j++){
             if(func_compara(this->operator[](i), this->operator[](j))){
-                T temp = this->operator[](i);
-                this->operator[](i) = this->operator[](j);
-                this->operator[](j) = temp;
+                //T temp = this->operator[](i);
+                T temp = std::move(this->operator[](i));
+                this->operator[](i) = std::move(this->operator[](j));
+                this->operator[](j) = std::move(temp);
+                /* this->operator[](i) = this->operator[](j);
+                this->operator[](j) = temp; */
             }
         }
     }
@@ -59,6 +62,25 @@ bool ListaOrdenada<T>::sortByWeight()
     return false;
 }
 
+template <typename T>
+void ListaOrdenada<T>::getList(int start,int size, string wordInput)
+{
+    ListaOrdenada<Termo> outputList;
+    Termo termo(wordInput,0);
+    for(int i = start;i<size+start;i++){
+        const string &word = this->operator[](i).getWord();
+        const long &weight = this->operator[](i).getWeight();
+        Termo current(word,weight);
+        if(Termo::compareByPrefix(current,termo,wordInput.size()) == 0){
+            outputList.insert(this->operator[](i));
+        } 
+        
+    }
+    outputList.sortByWeight();
+    outputList.print();
+    
+    //return ListaOrdenada<Termo>();
+}
 
 #endif
 

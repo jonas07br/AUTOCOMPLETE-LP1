@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <functional>
 #include "Termo.h"
 #include "Lista.h"
 #include "ListaOrdenada.h"
@@ -15,10 +15,9 @@
 
 using namespace std;
 
-bool compareTermo( Termo &a,  Termo &b)
-{
+bool compareTermo(const Termo& a, const Termo& b) {
     return a<b;
-}
+};
 
 class FileService {
     public:
@@ -41,7 +40,8 @@ class FileService {
                     peso.erase(0, peso.find_first_not_of(" "));
 
                     //CREATING THE TERMO OBJECT AND INSERTING IT INTO THE LIST
-                    Termo termo(palavra, stoi(peso));
+                    Termo termo(palavra, stol(peso));
+                    //cout<<termo.getWord()<<" - "<<termo.getWeight()<<endl;
                     outputList.insert(termo);
                     
                     qtd++;
@@ -54,7 +54,7 @@ class FileService {
                 return outputList;
             }
             else{
-                cout <<RED<< "Erro ao abrir arquivo" <<RESET<< endl;
+                cout <<RED<< "Erro ao abrir o arquivo(Arquivo nao encontrado)" <<RESET<< endl;
                 return outputList;
             }
         }
